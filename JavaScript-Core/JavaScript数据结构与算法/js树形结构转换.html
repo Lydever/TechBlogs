@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>js树形结构转换</title>
+</head>
+<body>
+
+<script>
+  const list = [
+    {id: 1, title: "A节点", name: "添加A节点", desc: "", remark: ""},
+    {id: 2, title: "A节点", name: "修改A节点", desc: "", remark: ""},
+    {id: 3, title: "A节点", name: "更新A节点", desc: "", remark: ""},
+    {id: 4, title: "A节点", name: "删除A节点", desc: "", remark: ""},
+    {id: 5, title: "b节点", name: "添加节点", desc: "", remark: ""},
+    {id: 6, title: "b节点", name: "查看节点", desc: "", remark: ""}
+  ]
+
+  // 从原列表中按 title 生成树的根节点
+  const roots = [...new Set(list.map(({ title }) => title))]
+    .map(title => ({ id: title, title }));
+
+  // 遍历 list，把节点转换了加到对应的根节点下面去
+  list.forEach(it => {
+    const parent = roots.find(({ id }) => id === it.title);
+    (parent.children ??= []).push({
+      ...it,
+      title: it.name
+    });
+  });
+
+  console.dir(roots, { depth: null });
+  console.log(roots);
+
+
+
+</script>
+<script type="text/javascript">
+  function _comma(number) {
+      // 补全代码
+      let arr = number.toString().split();
+      let str = ''
+      if(arr.indexOf(-3) != -1) {
+          arr.splice(1,-3,'')
+      }
+      console.log(arr)
+      str = arr.join('')
+      return str
+    
+  }
+  console.log(_comma(12300))
+
+function transfor(str1,str2) { let str11 = str1.split('.').join('')
+ let str12 = str2.split('.').join('')
+
+ let str3 = Number(str11)
+ let  str4= Number(str12)
+ 
+ if(str4-str3 <= 0) {
+  return false
+ } else {
+  return true
+ }
+
+
+}
+
+transfor('1.2.3', '2.2.3')
+</script>
+
+</body>
+</html>
